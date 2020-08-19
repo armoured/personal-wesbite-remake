@@ -95,12 +95,13 @@ class App extends Component {
               )}
             </VisibilitySensor>
             
-            <VisibilitySensor once >
-              {({ isVisible }) => (
+           
                 <div className="flex row label-wrap">
                   <div className="flex row-gt-sm">
                     <div className="flex bullet-wrap">
 
+                    <VisibilitySensor once >
+                      {({ isVisible }) => (
                       <div className={isVisible ? "hex-wrap waypoint animated flip-in-x" : "hex-wrap waypoint"} data-animation={isVisible ? "flip-in-x" : ""} >
                         <div className="hexagon" >
                           <i className="mdi mdi-speedometer">
@@ -108,8 +109,12 @@ class App extends Component {
                           </i>
                         </div>
                       </div> 
+                      )}
+                      </VisibilitySensor>
 
-                      <div className={isVisible ? "waypoint animated fade-in" : "waypoint"} data-animation={isVisible ? "fade-in" : ""} >
+                      <VisibilitySensor once >
+                      {({ isVisible }) => (
+                      <div className={isVisible ? "waypoint animated fade-in" : "waypoint"} data-animation={isVisible ? "fade-in" : ""} style={{'animation-delay': "0.4s"}} >
                         <div className="label bold">
                           Violence
                         </div>
@@ -117,11 +122,15 @@ class App extends Component {
                           Fast load times and lag free interaction, my highest priority
                         </div>
                       </div>
+                      )}
+                      </VisibilitySensor>
 
                     </div>
 
                     <div className="flex bullet-wrap">
 
+                    <VisibilitySensor once >
+                      {({ isVisible }) => (
                       <div className={isVisible ? "hex-wrap waypoint animated flip-in-x" : "hex-wrap waypoint"} data-animation={isVisible ? "flip-in-x" : ""} style={{'animation-delay': "0.2s"}}>
                         <div className="hexagon" >
                           <i className="mdi mdi-cellphone-link">
@@ -129,8 +138,12 @@ class App extends Component {
                           </i>
                         </div>
                       </div> 
-
-                      <div className={isVisible ? "waypoint animated fade-in" : "waypoint"} data-animation={isVisible ? "fade-in" : ""} style={{'animation-delay': "0.2s"}}>
+                      )}
+                      </VisibilitySensor>
+                      
+                      <VisibilitySensor once >
+                      {({ isVisible }) => (
+                      <div className={isVisible ? "waypoint animated fade-in" : "waypoint"} data-animation={isVisible ? "fade-in" : ""} style={{'animation-delay': "0.6s"}}>
                         <div className="label bold">
                           Speed
                         </div>
@@ -138,6 +151,8 @@ class App extends Component {
                           My layouts will work on any device, big or small.
                         </div>
                       </div>
+                      )}
+                      </VisibilitySensor>
 
                     </div>
 
@@ -146,6 +161,8 @@ class App extends Component {
                   <div className="flex row-gt-sm">
                     <div className="flex bullet-wrap">
 
+                    <VisibilitySensor once >
+                      {({ isVisible }) => (
                       <div className={isVisible ? "hex-wrap waypoint animated flip-in-x" : "hex-wrap waypoint"} data-animation={isVisible ? "flip-in-x" : ""} style={{'animation-delay': "0.4s"}} >
                         <div className="hexagon" >
                           <i className="mdi mdi-lightbulb-outline">
@@ -153,8 +170,12 @@ class App extends Component {
                           </i>
                         </div>
                       </div> 
+                    )}
+                    </VisibilitySensor>
 
-                      <div className={isVisible ? "waypoint animated fade-in" : "waypoint"} data-animation={isVisible ? "fade-in" : ""} style={{'animation-delay': "0.4s"}} >
+                    <VisibilitySensor once >
+                      {({ isVisible }) => (
+                      <div className={isVisible ? "waypoint animated fade-in" : "waypoint"} data-animation={isVisible ? "fade-in" : ""} style={{'animation-delay': "0.8s"}} >
                         <div className="label bold">
                           Momentum
                         </div>
@@ -162,11 +183,15 @@ class App extends Component {
                           Strong preference for easy to use, intuitive UX/UI.
                         </div>
                       </div>
+                    )}
+                    </VisibilitySensor>
 
                     </div>
 
                     <div className="flex bullet-wrap">
 
+                    <VisibilitySensor once >
+                      {({ isVisible }) => (
                       <div className={isVisible ? "hex-wrap waypoint animated flip-in-x" : "hex-wrap waypoint"} data-animation={isVisible ? "flip-in-x" : ""} style={{'animation-delay': "0.6s"}} >
                         <div className="hexagon" >
                           <i className="mdi mdi-rocket">
@@ -174,8 +199,12 @@ class App extends Component {
                           </i>
                         </div>
                       </div> 
+                      )}
+                      </VisibilitySensor>
 
-                      <div className={isVisible ? "waypoint animated fade-in" : "waypoint"} data-animation={isVisible ? "fade-in" : ""} style={{'animation-delay': "0.6s"}}>
+                      <VisibilitySensor once >
+                      {({ isVisible }) => (
+                      <div className={isVisible ? "waypoint animated fade-in" : "waypoint"} data-animation={isVisible ? "fade-in" : ""} style={{'animation-delay': "1s"}}>
                         <div className="label bold">
                           Dynamic
                         </div>
@@ -183,13 +212,14 @@ class App extends Component {
                           Websites don't have to be static, I love making pages come to life. 
                         </div>
                       </div>
+                      )}
+                      </VisibilitySensor>
 
                     </div>
 
                   </div>
                 </div>
-              )}
-            </VisibilitySensor>
+              
           </div>
         </section>          
       </div>
