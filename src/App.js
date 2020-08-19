@@ -15,24 +15,13 @@ const scrollToRef = (ref) => window.scrollTo({
   behavior: 'smooth'
 })   
 
-
-const Slidingtext = () => {
-  const [targetRef, visible] = useVisible()
-
-  return (
-    <div ref={targetRef} className={visible ? "header waypoint animated slide-in-left" : "header waypoint"} data-animation={visible ? "slide-in-left": ""} >
-      ABOUT
-    </div> 
-  )
-}
-
 class App extends Component {
 
   constructor( props ) {
     super( props );
 
     this.state = {
-      isVisible: false
+      
     }
     this.myRef = React.createRef() 
 
@@ -40,24 +29,14 @@ class App extends Component {
 
   }
 
-  onChange(isVisible) {
-     this.setState({isVisible: isVisible})
-  }
-
-  // VisibleComponent = () => {
-  //   const [targetRef, visible] = useVisible()
-  //   return (
-  //     <div ref={targetRef} className={visible ? "header waypoint animated slide-in-left" : "header waypoint"} data-animation={visible ? "slide-in-left": ""} >
-  //       ABOUT
-  //     </div>    
-  //   )
-  // }
-
   render() {
 
 
     return (
       <div className="overflow-wrap">
+
+        {/* HOME */}
+
         <section id="home" className="flex height-fix">
             <PointsGraphic name="canvas" background="#252934" />
             <div className="flex">
@@ -91,27 +70,131 @@ class App extends Component {
 
             </div>
         </section>
+
+        {/* ABOUT */}
+
         <section id="about" ref={this.myRef}>
-          {/* <div class="header waypoint animated slide-in-left" data-animation="slide-in-left">
-            ABOUT
-          </div> */}
+          <div className="container flex">
+            <VisibilitySensor once >
+              {({ isVisible }) => (
+                <div 
+                  className={isVisible ? "header waypoint animated slide-in-left" : "header waypoint"} 
+                  data-animation={isVisible ? "slide-in-left": ""} 
+                >
+                  ABOUT
+                </div>
+              )}
+            </VisibilitySensor>
+            <VisibilitySensor once >
+              {({ isVisible }) => (
+                <div 
+                  className={isVisible ? "header-bar waypoint animated slide-in-left" : "header-bar waypoint"}  
+                  data-animation={isVisible ? "slide-in-left" : ""} 
+                  style={{'animation-delay': "0.5s"}}
+                />   
+              )}
+            </VisibilitySensor>
+            
+            <VisibilitySensor once >
+              {({ isVisible }) => (
+                <div className="flex row label-wrap">
+                  <div className="flex row-gt-sm">
+                    <div className="flex bullet-wrap">
 
-        <VisibilitySensor once >
-          {({ sensorRef, isVisible }) => (
-            <div ref={sensorRef} className={isVisible ? "header waypoint animated slide-in-left" : "header waypoint"} data-animation={isVisible ? "slide-in-left": ""} >
-              ABOUT
-            </div>
-          )}
-        </VisibilitySensor>
+                      <div className={isVisible ? "hex-wrap waypoint animated flip-in-x" : "hex-wrap waypoint"} data-animation={isVisible ? "flip-in-x" : ""} >
+                        <div className="hexagon" >
+                          <i className="mdi mdi-speedometer">
 
-  
+                          </i>
+                        </div>
+                      </div> 
+
+                      <div className={isVisible ? "waypoint animated fade-in" : "waypoint"} data-animation={isVisible ? "fade-in" : ""} >
+                        <div className="label bold">
+                          Violence
+                        </div>
+                        <div>
+                          Fast load times and lag free interaction, my highest priority
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div className="flex bullet-wrap">
+
+                      <div className={isVisible ? "hex-wrap waypoint animated flip-in-x" : "hex-wrap waypoint"} data-animation={isVisible ? "flip-in-x" : ""} style={{'animation-delay': "0.2s"}}>
+                        <div className="hexagon" >
+                          <i className="mdi mdi-cellphone-link">
+
+                          </i>
+                        </div>
+                      </div> 
+
+                      <div className={isVisible ? "waypoint animated fade-in" : "waypoint"} data-animation={isVisible ? "fade-in" : ""} style={{'animation-delay': "0.2s"}}>
+                        <div className="label bold">
+                          Speed
+                        </div>
+                        <div>
+                          My layouts will work on any device, big or small.
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <div className="flex row-gt-sm">
+                    <div className="flex bullet-wrap">
+
+                      <div className={isVisible ? "hex-wrap waypoint animated flip-in-x" : "hex-wrap waypoint"} data-animation={isVisible ? "flip-in-x" : ""} style={{'animation-delay': "0.4s"}} >
+                        <div className="hexagon" >
+                          <i className="mdi mdi-lightbulb-outline">
+
+                          </i>
+                        </div>
+                      </div> 
+
+                      <div className={isVisible ? "waypoint animated fade-in" : "waypoint"} data-animation={isVisible ? "fade-in" : ""} style={{'animation-delay': "0.4s"}} >
+                        <div className="label bold">
+                          Momentum
+                        </div>
+                        <div>
+                          Strong preference for easy to use, intuitive UX/UI.
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div className="flex bullet-wrap">
+
+                      <div className={isVisible ? "hex-wrap waypoint animated flip-in-x" : "hex-wrap waypoint"} data-animation={isVisible ? "flip-in-x" : ""} style={{'animation-delay': "0.6s"}} >
+                        <div className="hexagon" >
+                          <i className="mdi mdi-rocket">
+
+                          </i>
+                        </div>
+                      </div> 
+
+                      <div className={isVisible ? "waypoint animated fade-in" : "waypoint"} data-animation={isVisible ? "fade-in" : ""} style={{'animation-delay': "0.6s"}}>
+                        <div className="label bold">
+                          Dynamic
+                        </div>
+                        <div>
+                          Websites don't have to be static, I love making pages come to life. 
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+              )}
+            </VisibilitySensor>
+          </div>
         </section>          
       </div>
     );
   }
 }
-
-// View my work <ArrowRightAltIcon />
-
 
 export default App;
