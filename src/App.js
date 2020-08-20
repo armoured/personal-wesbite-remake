@@ -8,7 +8,8 @@ import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 // import VisibilitySensor from 'react-visibility-sensor';
 import VisibilitySensor from "./VisibilitySensor";
-import { useVisible } from 'react-hooks-visible'
+import { useVisible } from 'react-hooks-visible';
+import mejohnwick from './img/mejohnwick.jpg';
 
 const scrollToRef = (ref) => window.scrollTo({
   top: ref.current.offsetTop,
@@ -21,13 +22,44 @@ class App extends Component {
     super( props );
 
     this.state = {
-      
+      homeHeight: null,
+      fixedNav: false
     }
     this.myRef = React.createRef() 
+    
 
     console.log(React.version);
 
   }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.listenToScroll)
+  }
+  
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.listenToScroll)
+  }
+  
+  listenToScroll = () => {
+ 
+    const scrolled = window.pageYOffset
+    let fixedNav = false
+    if (this.state.homeHeight !== null && scrolled >= this.state.homeHeight) {
+      fixedNav = true
+    } 
+  
+    this.setState({
+      fixedNav
+    })
+  }
+
+  refCallback = el => {
+    console.log(el.getBoundingClientRect());
+    const homeHeight = el.getBoundingClientRect().height;
+    this.setState({
+      homeHeight
+    })
+  };
 
   render() {
 
@@ -37,7 +69,7 @@ class App extends Component {
 
         {/* HOME */}
 
-        <section id="home" className="flex height-fix">
+        <section id="home" className="flex height-fix" ref={this.refCallback}>
             <PointsGraphic name="canvas" background="#252934" />
             <div className="flex">
 
@@ -57,7 +89,7 @@ class App extends Component {
                 View my work <ArrowRightAltIcon className="mdi" />
               </div>
 
-              <nav className="flex desk">
+              <nav className={this.state.fixedNav ? "flex desk fixed" : "flex desk"}>
                 <div className="link-wrap">
                   <div className="page-link active" dest="home">home</div>
                   <div className="page-link" dest="about">about</div>
@@ -219,6 +251,30 @@ class App extends Component {
 
                   </div>
                 </div>
+
+                <VisibilitySensor once >
+                {({ isVisible }) => (
+                  <div className="skills-wrapper flex row-gt-sm">
+                    <div
+                      className={isVisible ? "flex flex-50-gt-sm waypoint animated slide-in-left" : "flex flex-50-gt-sm waypoint"}
+                      data-animated={isVisible ? "slide-in-left" : ""}
+                      // style={{'animation-delay': "1s"}}
+                    >
+                      <img className="me" src={mejohnwick}> 
+                      
+                      </img>
+                      <div className="label bold">
+                        Who's this guy?
+                      </div>
+                      <div>
+                        I'm a Mid-Level Backend and DevOps Engineer at Fitsense in Sydney, Australia.
+                        <br></br>
+                        I'm a recent computer science graduate with a passion for distributed systems.
+                      </div>
+                    </div>
+                  </div>
+                )}
+                </VisibilitySensor>
               
           </div>
         </section>          

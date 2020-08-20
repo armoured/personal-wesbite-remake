@@ -58,6 +58,12 @@
   }
 }
 
+@keyframes popDown {
+  0% {
+    transform: translateY(-100px);
+  }
+}
+
 .fade-enter {
   opacity: 0.01;
 }
@@ -87,7 +93,7 @@ section {
 
 section:nth-of-type(1) {
   color: #fff;
-  height: calc(100vh + 100px);
+  height: calc(100vh + 53px);
   padding: 0 10px;
   line-height: 18pt;
   position: relative;
@@ -158,6 +164,19 @@ section:nth-of-type(1) .button {
   position: relative;
 }
 
+section:nth-of-type(2) .skills-wrapper {
+  align-items: flex-start;
+  width: 100%;
+}
+
+section .flex-50-gt-sm {
+  display: block;
+}
+
+section:nth-of-type(2) .skills-wrapper .me {
+  height: 200px;
+}
+
 .button {
   border: 2px solid #fff;
   box-sizing: inherit;
@@ -221,6 +240,17 @@ nav .link-wrap div {
 
 nav .active {
   color: #e31b6d;
+}
+
+nav.fixed.desk {
+  animation: popDown 0.5s;
+}
+
+nav.fixed {
+  bottom: inherit;
+  left: 0;
+  position: fixed;
+  top: 0;
 }
 
 .header {
