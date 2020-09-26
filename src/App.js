@@ -11,6 +11,21 @@ import VisibilitySensor from "./VisibilitySensor";
 import { useVisible } from 'react-hooks-visible';
 import mejohnwick from './img/mejohnwick.jpg';
 
+const projects = {
+  'activelife': {
+    'title': 'Activelife by FitSense',
+    'tag': 'HEALTHY LIVING PLATFORM',
+    'detail': 'ChowNow Discover is a platform that lets customers discover new local restaurants and provides business owners with tools to convert first time orders into lifelong diners.',
+    'link': 'https://eat.chownow.com/'
+  },
+  'notare': {
+    'title': 'Notare',
+    'tag': 'Youtube NoteTaking',
+    'detail': 'ChowNow Discover is a platform that lets customers discover new local restaurants and provides business owners with tools to convert first time orders into lifelong diners.',
+    'link': 'https://armoured.github.io'
+  }
+}
+
 const scrollToRef = (ref) => window.scrollTo({
   top: ref.current.offsetTop,
   behavior: 'smooth'
@@ -23,7 +38,13 @@ class App extends Component {
 
     this.state = {
       homeHeight: null,
-      fixedNav: false
+      fixedNav: false,
+      modalString: "modal-wrap flex",
+      projectButton: "button",
+      projectTitle: "placeholder",
+      projectTag: "placeholder",
+      projectDetail: "placeholder",
+      projectLink: "https://google.com"
     }
     this.myRef = React.createRef() 
     
@@ -61,11 +82,88 @@ class App extends Component {
     })
   };
 
+  setVisibleModal = (project) => {
+    this.setState({
+      modalString: "modal-wrap flex visible",
+      projectButton: "button visible",
+      projectTitle: projects[project]['title'],
+      projectTag: projects[project]['tag'],
+      projectDetail: projects[project]['detail'],
+      projectLink: projects[project]['link']
+    })
+  }
+
+  setInvisibleModal = () => {
+    this.setState({
+      modalString: "modal-wrap flex"
+    })
+  }
+
   render() {
 
 
     return (
       <div className="overflow-wrap">
+
+        <div className={this.state.modalString}>
+          {/* EVENT */}
+          <div className="mask"></div> 
+          <div id="modal"
+              className="modal"
+              style={{"max-width": "700px"}}
+          >
+            <div className="carousel-wrap" 
+                style={{"width": "700px"}}
+            >
+              <div className="window">
+                {/* EVENT */}
+                <div id="carousel"
+                    style={{"left": "-700px"}}
+                >
+                  <div className="slide"
+                  >
+                    Slide 1 todo style
+                  </div>
+                  <div className="slide"
+                  >
+                    Slide 2 todo style
+                  </div>
+                  <div className="slide"
+                  >
+                    Slide 3 todo style
+                  </div>
+                </div>
+
+                {/* EVENT */}
+                <i id="prev" className="mdi mdi-chevron-left"></i>
+                {/* EVENT */}
+                <i id="next" className="mdi mdi-chevron-right"></i>
+
+              </div>
+            </div>
+            <div className="info-box">
+              <div className="title">{this.state.projectTitle}</div>
+              <div className="tag">{this.state.projectTag}</div>
+              <div className="detail">{this.state.projectDetail}</div>
+              <a href={this.state.projectLink} target="_blank" >
+                {/* EVENT */}
+                <div className={this.state.projectButton}>
+                  <i className="mdi mdi-open-in-new">
+                    VIEW SITE
+                  </i>
+                </div> 
+
+              </a>
+            </div>
+            {/* EVENT */}
+            <i 
+              className="close mdi mdi-close"
+              onClick={()=>this.setInvisibleModal()}
+            >
+
+            </i>
+          </div>
+        </div>
 
         {/* HOME */}
 
@@ -277,7 +375,151 @@ class App extends Component {
                 </VisibilitySensor>
               
           </div>
-        </section>          
+        </section>
+
+        <section id="portfolio" class="flex">
+          <VisibilitySensor once >
+            {({ isVisible }) => (
+              <div className={isVisible ? "header waypoint animated slide-in-right" : "header waypoint"} 
+                    data-animation={isVisible ? "slide-in-right" : ""} 
+              >
+                PROJECTS
+              </div>
+            )}
+          </VisibilitySensor>
+          <VisibilitySensor once >
+            {({ isVisible }) => (
+              <div className={isVisible ? "header-bar waypoint animated slide-in-right" : "header-bar waypoint"} 
+                    data-animation={isVisible ? "slide-in-right" : ""}
+                    style={{'animation-delay': "0.3s"}}
+              >
+              </div>
+            )}
+          </VisibilitySensor>
+
+          {/* FILTER WRAP HERE. EMPTY FOR NOW */}
+          <div>
+          
+          </div>  
+
+          <div id="gallery" 
+              className="container flex row wrap animated"
+          >
+            <div 
+              className="mix react"
+              data-my-order="1"
+              style={{'display': "inline-block"}}
+              data-bound=""
+            >
+              <div>
+                <div className="card"></div>
+                <div className="text">
+                  <div className="bold">ChowNow Ordering</div>
+                  <span className="highlight">React JS / Python</span>
+                </div>
+                <div 
+                  id="activelife" 
+                  className="button"
+                  onClick={()=>this.setVisibleModal("activelife")}
+                >
+                  LEARN MORE
+                </div>
+              </div>
+            </div>
+
+            <div 
+              className="mix react"
+              data-my-order="1"
+              style={{'display': "inline-block"}}
+              data-bound=""
+            >
+              <div>
+                <div className="card"></div>
+                <div className="text">
+                  <div className="bold">Notare</div>
+                  <span className="highlight">React JS / Python</span>
+                </div>
+                <div 
+                  id="notare" 
+                  className="button"
+                  onClick={()=>this.setVisibleModal("notare")}
+                >
+                  LEARN MORE
+                </div>
+              </div>
+            </div>
+
+            <div 
+              className="mix react"
+              data-my-order="1"
+              style={{'display': "inline-block"}}
+              data-bound=""
+            >
+              <div>
+                <div className="card"></div>
+                <div className="text">
+                  <div className="bold">Notare</div>
+                  <span className="highlight">React JS / Python</span>
+                </div>
+                <div 
+                  id="notare" 
+                  className="button"
+                  onClick={()=>this.setVisibleModal("notare")}
+                >
+                  LEARN MORE
+                </div>
+              </div>
+            </div>
+
+            <div 
+              className="mix react"
+              data-my-order="1"
+              style={{'display': "inline-block"}}
+              data-bound=""
+            >
+              <div>
+                <div className="card"></div>
+                <div className="text">
+                  <div className="bold">Notare</div>
+                  <span className="highlight">React JS / Python</span>
+                </div>
+                <div 
+                  id="notare" 
+                  className="button"
+                  onClick={()=>this.setVisibleModal("notare")}
+                >
+                  LEARN MORE
+                </div>
+              </div>
+            </div>
+
+            <div 
+              className="mix react"
+              data-my-order="1"
+              style={{'display': "inline-block"}}
+              data-bound=""
+            >
+              <div>
+                <div className="card"></div>
+                <div className="text">
+                  <div className="bold">Notare</div>
+                  <span className="highlight">React JS / Python</span>
+                </div>
+                <div 
+                  id="notare" 
+                  className="button"
+                  onClick={()=>this.setVisibleModal("notare")}
+                >
+                  LEARN MORE
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </section>  
+
+          
       </div>
     );
   }
